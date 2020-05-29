@@ -8,6 +8,18 @@ public class StringCalculatorTest {
   private StringCalculator sc = new StringCalculator();
 
   @Test
+  public void getAddMethodCalledCount() throws Exception {
+    StringCalculator sCalc = new StringCalculator();
+    String[] inputs = new String[] {"", "5,1,2,4", "2,3,", ",4", "2,"};
+    int expected = 5;
+    for (int i = 0; i < inputs.length; i++) {
+      sCalc.add(inputs[i]);
+    }
+    int actual = sCalc.getCalledCount();
+    Assert.assertEquals(expected, actual);
+  }
+
+  @Test
   public void addNumbersExceptionOnNegativeNumbers() {
     String actuals = "negatives not allowed -3,-5";
     String expecteds = "";

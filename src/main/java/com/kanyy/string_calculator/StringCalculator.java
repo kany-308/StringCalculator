@@ -11,7 +11,10 @@ public class StringCalculator {
   private int customDelimeterStartIndex = 4;
   private String exceptionMessage = "negatives not allowed ";
 
+  private int addCount = 0;
+
   public int add(String numbers) throws Exception {
+    addCount++;
     int sum = 0;
     List<String> negativeList = new ArrayList<>();
     String customDelim = defaultDelimeter;
@@ -33,6 +36,10 @@ public class StringCalculator {
       throw new Exception(exceptionMessage + String.join(",", negativeList));
     }
     return sum;
+  }
+
+  public int getCalledCount() {
+    return addCount;
   }
 
 }
