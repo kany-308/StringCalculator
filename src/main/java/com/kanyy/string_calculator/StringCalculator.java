@@ -1,14 +1,19 @@
 package com.kanyy.string_calculator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StringCalculator {
 
   private String defaultDelimeter = ",|\n";
   private int defaultDelimeterStartIndex = 2;
   private int defaultDelimeterEndEndex = 3;
   private int customDelimeterStartIndex = 4;
+  private String exceptionMessage = "negatives not allowed ";
 
-  public int add(String numbers) {
+  public int add(String numbers) throws Exception {
     int sum = 0;
+    List<String> negativeList = new ArrayList<>();
     String customDelim = defaultDelimeter;
     if (numbers.startsWith("//")) {
       customDelim = numbers.substring(defaultDelimeterStartIndex, defaultDelimeterEndEndex);
@@ -17,8 +22,15 @@ public class StringCalculator {
     String[] nums = numbers.split(customDelim);
     for (int i = 0; i < nums.length; i++) {
       if (!nums[i].equals("")) {
-        sum += Integer.parseInt(nums[i]);
+        int num = Integer.parseInt(nums[i]);
+        if (num < 0) {
+          negativeList.add(nums[i]);
+        }
+        sum += num;
       }
+    }
+    if (negativeList.size() > 0) {
+      throw new Exception(exceptionMessage + String.join(",", negativeList));
     }
     return sum;
   }
