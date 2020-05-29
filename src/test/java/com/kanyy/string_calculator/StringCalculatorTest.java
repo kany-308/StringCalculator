@@ -8,6 +8,28 @@ public class StringCalculatorTest {
   private StringCalculator sc = new StringCalculator();
 
   @Test
+  public void addNumbersWithSupportOfMultiCustomDelimeterOfMultiLength() throws Exception {
+    int[] expecteds = new int[] {11, 6};
+    String[] inputs = new String[] {"//[***][%%][;;;]\n1***2%%3;;;5", "//[%%][;]\n1%%2;3"};
+    int[] actuals = new int[inputs.length];
+    for (int i = 0; i < inputs.length; i++) {
+      actuals[i] = sc.add(inputs[i]);
+    }
+    Assert.assertArrayEquals(expecteds, actuals);
+  }
+
+  @Test
+  public void addNumbersWithSupportOfMultiCustomDelimeter() throws Exception {
+    int[] expecteds = new int[] {4, 7};
+    String[] inputs = new String[] {"//[*][;]\n1*2;1", "2,5"};
+    int[] actuals = new int[inputs.length];
+    for (int i = 0; i < inputs.length; i++) {
+      actuals[i] = sc.add(inputs[i]);
+    }
+    Assert.assertArrayEquals(expecteds, actuals);
+  }
+
+  @Test
   public void addNumbersWithSupportOfCustomDelimeterOfMultiLength() throws Exception {
     int[] expecteds = new int[] {3, 10};
     String[] inputs = new String[] {"//[***]\n1***2", "2\n3,5"};
