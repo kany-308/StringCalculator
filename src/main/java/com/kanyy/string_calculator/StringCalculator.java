@@ -9,6 +9,7 @@ public class StringCalculator {
   private int defaultDelimeterStartIndex = 2;
   private int defaultDelimeterEndEndex = 3;
   private int customDelimeterStartIndex = 4;
+  private int maximumNumAllowed = 1000;
   private String exceptionMessage = "negatives not allowed ";
 
   private int addCount = 0;
@@ -26,6 +27,9 @@ public class StringCalculator {
     for (int i = 0; i < nums.length; i++) {
       if (!nums[i].equals("")) {
         int num = Integer.parseInt(nums[i]);
+        if (num > maximumNumAllowed) {
+          continue;
+        }
         if (num < 0) {
           negativeList.add(nums[i]);
         }

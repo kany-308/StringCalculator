@@ -8,6 +8,17 @@ public class StringCalculatorTest {
   private StringCalculator sc = new StringCalculator();
 
   @Test
+  public void addNumbersLessThanEqualTo1000() throws Exception {
+    int[] expecteds = new int[] {5, 7};
+    String[] inputs = new String[] {"5,1001", "2\n2000,5"};
+    int[] actuals = new int[inputs.length];
+    for (int i = 0; i < inputs.length; i++) {
+      actuals[i] = sc.add(inputs[i]);
+    }
+    Assert.assertArrayEquals(expecteds, actuals);
+  }
+
+  @Test
   public void getAddMethodCalledCount() throws Exception {
     StringCalculator sCalc = new StringCalculator();
     String[] inputs = new String[] {"", "5,1,2,4", "2,3,", ",4", "2,"};
